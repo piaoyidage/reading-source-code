@@ -8,3 +8,13 @@
 > Underscore provides over 100 functions that support both your favorite workaday functional helpers: map, filter, invoke — as well as more specialized goodies: function binding, javascript templating, creating quick indexes, deep equality testing, and so on.
 
 underscore 提供了超过100个函数，包括了常用的map、filter、invoke的功能性函数，还有更专业的部分，如：函数绑定、js模板、创建快速索引、深度相等测试等等。
+
+## 怎么读 ？
+
+### 读源码前准备
+
+1. 在官网[underscore官网](http://underscorejs.org/)查看文档，初步了解underscore
+
+2. 结合官网的api，了解underscore如何使用
+
+3. 开始看源码
