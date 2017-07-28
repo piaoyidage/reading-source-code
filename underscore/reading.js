@@ -20,10 +20,13 @@
   var previousUnderscore = root._;
 
   // Save bytes in the minified (but not gzipped) version:
+  // reading:节省字节
   var ArrayProto = Array.prototype, ObjProto = Object.prototype;
+  // reading:Symbol ES6 新增，一种primiti data type
   var SymbolProto = typeof Symbol !== 'undefined' ? Symbol.prototype : null;
 
   // Create quick reference variables for speed access to core prototypes.
+  // reading:创建快速的引用变量以加速访问核心原型函数
   var push = ArrayProto.push,
       slice = ArrayProto.slice,
       toString = ObjProto.toString,
@@ -31,11 +34,13 @@
 
   // All **ECMAScript 5** native function implementations that we hope to use
   // are declared here.
+  // reading:我们希望使用的所有 ES5 原生函数实现都在这里声明 
   var nativeIsArray = Array.isArray,
       nativeKeys = Object.keys,
       nativeCreate = Object.create;
 
   // Naked function reference for surrogate-prototype-swapping.
+  // reading:空函数引用，用于后面原型继承
   var Ctor = function(){};
 
   // Create a safe reference to the Underscore object for use below.
