@@ -44,6 +44,7 @@
   var Ctor = function(){};
 
   // Create a safe reference to the Underscore object for use below.
+  // 
   var _ = function(obj) {
     if (obj instanceof _) return obj;
     if (!(this instanceof _)) return new _(obj);
@@ -70,7 +71,13 @@
   // Internal function that returns an efficient (for current engines) version
   // of the passed-in callback, to be repeatedly applied in other Underscore
   // functions.
+  // reading:根据传入的回调函数返回一个高效版本的内部函数，
+  // 被重复应用在Underscore函数中。
   var optimizeCb = function(func, context, argCount) {
+    // reading: 为何使用void 0?
+    // 1. void 0 === undefined 为 true
+    // 2. undefined 在ES5之前可以被 overwritten  比如 var undefined = "hi"，ES5已经改为read only了
+    // 3. void 0 比 undefined 少写单词（这个原因无可辩驳~~~）  
     if (context === void 0) return func;
     switch (argCount) {
       case 1: return function(value) {
@@ -107,6 +114,9 @@
   // External wrapper for our callback generator. Users may customize
   // `_.iteratee` if they want additional predicate/iteratee shorthand styles.
   // This abstraction hides the internal-only argCount argument.
+  // reading:为何搞了个builteinIteratee
+  // 注释解释的很清晰，我们如果想增加额外的功能，可以自定义_.iteratee
+  // 此时 _.iteratee != builtinIteratee
   _.iteratee = builtinIteratee = function(value, context) {
     return cb(value, context, Infinity);
   };
