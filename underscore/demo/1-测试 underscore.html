@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>1-测试 underscore</title>
+</head>
+<body>
+
+
+	<!-- <script src="./lib/underscore-min.js"></script> -->
+	<script src="../reading.js"></script>
+	<script>
+		window.onload = function(){
+
+			// Collection Functions (Arrays or Objects)
+			
+			/**
+			 * 1. _.each
+			 */
+			// _.each([1, 2, 3], function(element, index, list){
+			// 	console.log(element+2);
+			// });
+
+			
+			/**
+			 * 2. _
+			 */
+			// var _ = function(obj) {
+			// 	console.log('this =', this)
+			//     if (obj instanceof _) return obj;
+			//     if (!(this instanceof _)) return new _(obj);
+			//     this._wrapped = obj;
+			// };
+
+			// // var a = _({name: 'zhangsan'})
+			// // console.log('a =', a)
+
+			// var b = _(new _({name: 'zhangsan'}))
+			// console.log('b =', b)
+
+			// var c = _(b)
+			// console.log('c =', c)
+			
+			/**
+			 * 3. _.has
+			 */
+			// const obj = { name: 'hello' }
+			// console.log(_.has(obj, 'name'))
+
+			// const obj2 = { name: { hello: { world: { hi: 'hi' } } } }
+			// const arr = ['name', 'hello', 'world', 'hi']
+			// console.log(_.has(obj2, arr))
+			
+			/**
+			 * 4. arguments
+			 * 箭头函数的 arguments 指向的是外层的，箭头函数内无法使用自己函数的 arguments
+			 * 可以使用 rest
+			 */
+			// const wrapFunc = function(a, b) {
+			// 	console.log(arguments.length)
+			// 	console.log(arguments)
+			// 	console.log(arguments[0])
+			// 	console.log(arguments[1])
+			// 	return c => {
+			// 		console.log(arguments.length)
+			// 		console.log(arguments)
+			// 		console.log(arguments[0])
+			// 		console.log(arguments[1])
+			// 		return (...d) => {
+			// 			console.log(d.length)
+			// 			console.log(d[0])
+			// 			console.log(d[1])
+			// 		}
+			// 	}
+			// }
+
+			// wrapFunc(1, 2)(3)(4, 5)
+			
+			/**
+			 * 5. _.assign
+			 */
+			// const obj = { name: 'hi' }
+			// console.log(_.assign(obj, {age: 13}, {gender: 'male', name: 'hello'}))
+
+			/**
+			 * 6. _.isMatch
+			 */
+			// console.log(_.isMatch({name:'hi', world: 'welcome'}, {name: 'hi'})) // true
+			// console.log(_.isMatch({name:'hi', world: 'welcome'}, {name2: 'hi'})) // false
+			
+			/**
+			 * 7. _.restArgs
+			 */
+			// console.log(_.restArgs(function(){console.log(this.a)})())
+			// console.log(_.restArgs(function(){console.log(this.a)}, 1, 2))
+
+		}
+	</script>
+</body>
+</html>

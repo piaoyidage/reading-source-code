@@ -123,6 +123,7 @@
 
   // Similar to ES6's rest param (http://ariya.ofilabs.com/2013/03/es6-and-rest-parameter.html)
   // This accumulates the arguments passed into an array, after a given index.
+  // TODO
   var restArgs = function(func, startIndex) {
     startIndex = startIndex == null ? func.length - 1 : +startIndex;
     return function() {
@@ -155,13 +156,13 @@
     Ctor.prototype = null;
     return result;
   };
-
+  // reading: 浅赋值
   var shallowProperty = function(key) {
     return function(obj) {
       return obj == null ? void 0 : obj[key];
     };
   };
-
+  // reading: 深赋值
   var deepGet = function(obj, path) {
     var length = path.length;
     for (var i = 0; i < length; i++) {
@@ -1002,6 +1003,7 @@
 
   // Retrieve the names of an object's own properties.
   // Delegates to **ECMAScript 5**'s native `Object.keys`.
+  // reading:获取对象的所有key，这里的key可能是数组，判断在_.has(obj, key)
   _.keys = function(obj) {
     if (!_.isObject(obj)) return [];
     if (nativeKeys) return nativeKeys(obj);
@@ -1080,6 +1082,7 @@
   };
 
   // An internal function for creating assigner functions.
+  // reading:一个内部函数，用于创建赋值函数
   var createAssigner = function(keysFunc, defaults) {
     return function(obj) {
       var length = arguments.length;
@@ -1103,6 +1106,7 @@
 
   // Assigns a given object with all the own properties in the passed-in object(s).
   // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+  // reading: 将一个对象的属性赋值给另一个对象
   _.extendOwn = _.assign = createAssigner(_.keys);
 
   // Returns the first key on an object that passes a predicate test.
@@ -1182,6 +1186,7 @@
   };
 
   // Returns whether an object has a given set of `key:value` pairs.
+  // reading: 判断 attrs 是否是 object 的子集（不严格的说法）
   _.isMatch = function(object, attrs) {
     var keys = _.keys(attrs), length = keys.length;
     if (object == null) return !length;
@@ -1325,6 +1330,7 @@
   };
 
   // Is a given variable an object?
+  // reading: 这里 null/undefined/0/false 都不是object
   _.isObject = function(obj) {
     var type = typeof obj;
     return type === 'function' || type === 'object' && !!obj;
@@ -1381,6 +1387,16 @@
 
   // Shortcut function for checking if an object has a given property directly
   // on itself (in other words, not on a prototype).
+  // reading: 下面两种情况返回 true
+  /**
+    // path 不是数组
+    const obj = { name: 'hello' }
+    console.log(_.has(obj, 'name'))
+    // path 是数组
+    const obj2 = { name: { hello: { world: { hi: 'hi' } } } }
+    const arr = ['name', 'hello', 'world', 'hi']
+    console.log(_.has(obj2, arr))
+   */
   _.has = function(obj, path) {
     if (!_.isArray(path)) {
       return obj != null && hasOwnProperty.call(obj, path);
@@ -1419,7 +1435,7 @@
   };
 
   _.noop = function(){};
-
+  // reading: 两种赋值
   _.property = function(path) {
     if (!_.isArray(path)) {
       return shallowProperty(path);
@@ -1441,6 +1457,7 @@
 
   // Returns a predicate for checking whether an object has a given set of
   // `key:value` pairs.
+  // reading: ...
   _.matcher = _.matches = function(attrs) {
     attrs = _.extendOwn({}, attrs);
     return function(obj) {
