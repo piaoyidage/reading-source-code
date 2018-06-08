@@ -224,6 +224,7 @@
   };
 
   // Create a reducing function iterating left or right.
+  // TODO: 需再次 read
   var createReduce = function(dir) {
     // Wrap code that reassigns argument variables in a separate function than
     // the one that accesses `arguments.length` to avoid a perf hit. (#1991)
@@ -256,6 +257,7 @@
   _.reduceRight = _.foldr = createReduce(-1);
 
   // Return the first value which passes a truth test. Aliased as `detect`.
+  // reading: 查找
   _.find = _.detect = function(obj, predicate, context) {
     var keyFinder = isArrayLike(obj) ? _.findIndex : _.findKey;
     var key = keyFinder(obj, predicate, context);
@@ -264,6 +266,7 @@
 
   // Return all the elements that pass a truth test.
   // Aliased as `select`.
+  // reading: 过滤
   _.filter = _.select = function(obj, predicate, context) {
     var results = [];
     predicate = cb(predicate, context);
@@ -274,12 +277,14 @@
   };
 
   // Return all the elements for which a truth test fails.
+  // reading: 与 _.filter 相反
   _.reject = function(obj, predicate, context) {
     return _.filter(obj, _.negate(cb(predicate)), context);
   };
 
   // Determine whether all of the elements match a truth test.
   // Aliased as `all`.
+  // reading:
   _.every = _.all = function(obj, predicate, context) {
     predicate = cb(predicate, context);
     var keys = !isArrayLike(obj) && _.keys(obj),
@@ -293,6 +298,7 @@
 
   // Determine if at least one element in the object matches a truth test.
   // Aliased as `any`.
+  // reading:
   _.some = _.any = function(obj, predicate, context) {
     predicate = cb(predicate, context);
     var keys = !isArrayLike(obj) && _.keys(obj),
@@ -671,6 +677,7 @@
   };
 
   // Generator function to create the findIndex and findLastIndex functions.
+  // reading: ArrayLike 查找
   var createPredicateIndexFinder = function(dir) {
     return function(array, predicate, context) {
       predicate = cb(predicate, context);
@@ -935,6 +942,7 @@
   };
 
   // Returns a negated version of the passed-in predicate.
+  // reading: !
   _.negate = function(predicate) {
     return function() {
       return !predicate.apply(this, arguments);
@@ -1115,6 +1123,7 @@
   _.extendOwn = _.assign = createAssigner(_.keys);
 
   // Returns the first key on an object that passes a predicate test.
+  // reading: 对象查找有没有某个属性
   _.findKey = function(obj, predicate, context) {
     predicate = cb(predicate, context);
     var keys = _.keys(obj), key;
