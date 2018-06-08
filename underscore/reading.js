@@ -176,6 +176,9 @@
   // should be iterated as an array or as an object.
   // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
   // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
+  // reading: 判断是不是 ArrayLike 对象
+  // ArrayLike 对象的特点就是有 length 属性，同时 length 在 0~2^53-1 之间
+  // 比如 arguments，NodeList，HTML Collections，字符串等都是 ArrayLike 对象
   var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
   var getLength = shallowProperty('length');
   var isArrayLike = function(collection) {
@@ -189,6 +192,7 @@
   // The cornerstone, an `each` implementation, aka `forEach`.
   // Handles raw objects in addition to array-likes. Treats all
   // sparse array-likes as if they were dense.
+  // reading: each/forEach 对象和ArrayLike对象适用
   _.each = _.forEach = function(obj, iteratee, context) {
     iteratee = optimizeCb(iteratee, context);
     var i, length;
@@ -206,6 +210,7 @@
   };
 
   // Return the results of applying the iteratee to each element.
+  // reading: 生成一个新的数组
   _.map = _.collect = function(obj, iteratee, context) {
     iteratee = cb(iteratee, context);
     var keys = !isArrayLike(obj) && _.keys(obj),
