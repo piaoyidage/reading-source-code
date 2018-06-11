@@ -103,6 +103,7 @@
   // An internal function to generate callbacks that can be applied to each
   // element in a collection, returning the desired result — either `identity`,
   // an arbitrary callback, a property matcher, or a property accessor.
+  // reading: 一个生成回调的内部函数
   var cb = function(value, context, argCount) {
     if (_.iteratee !== builtinIteratee) return _.iteratee(value, context);
     if (value == null) return _.identity;
@@ -124,6 +125,7 @@
   // Similar to ES6's rest param (http://ariya.ofilabs.com/2013/03/es6-and-rest-parameter.html)
   // This accumulates the arguments passed into an array, after a given index.
   // TODO
+  // reading: 剩余参数
   var restArgs = function(func, startIndex) {
     startIndex = startIndex == null ? func.length - 1 : +startIndex;
     return function() {
@@ -312,6 +314,7 @@
 
   // Determine if the array or object contains a given item (using `===`).
   // Aliased as `includes` and `include`.
+  // reading: 
   _.contains = _.includes = _.include = function(obj, item, fromIndex, guard) {
     if (!isArrayLike(obj)) obj = _.values(obj);
     if (typeof fromIndex != 'number' || guard) fromIndex = 0;
@@ -319,6 +322,7 @@
   };
 
   // Invoke a method (with arguments) on every item in a collection.
+  // TODO
   _.invoke = restArgs(function(obj, path, args) {
     var contextPath, func;
     if (_.isFunction(path)) {
@@ -696,6 +700,7 @@
 
   // Use a comparator function to figure out the smallest index at which
   // an object should be inserted so as to maintain order. Uses binary search.
+  // reading: 使用比较函数来计算出应该插入对象的最小索引，以维持顺序。 使用二进制搜索
   _.sortedIndex = function(array, obj, iteratee, context) {
     iteratee = cb(iteratee, context, 1);
     var value = iteratee(obj);
@@ -708,6 +713,8 @@
   };
 
   // Generator function to create the indexOf and lastIndexOf functions.
+  // reading: indexOf 和 lastIndexOf 的函数生成器
+  // TODO
   var createIndexFinder = function(dir, predicateFind, sortedIndex) {
     return function(array, item, idx) {
       var i = 0, length = getLength(array);
@@ -1038,6 +1045,7 @@
   };
 
   // Retrieve the values of an object's properties.
+  // reading: 获取对象属性的值的数组
   _.values = function(obj) {
     var keys = _.keys(obj);
     var length = keys.length;
@@ -1339,6 +1347,7 @@
 
   // Is a given value an array?
   // Delegates to ECMA5's native Array.isArray
+  // reading: 判断是否是数组
   _.isArray = nativeIsArray || function(obj) {
     return toString.call(obj) === '[object Array]';
   };
@@ -1351,6 +1360,7 @@
   };
 
   // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp, isError, isMap, isWeakMap, isSet, isWeakSet.
+  // reading: 简单粗暴
   _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error', 'Symbol', 'Map', 'WeakMap', 'Set', 'WeakSet'], function(name) {
     _['is' + name] = function(obj) {
       return toString.call(obj) === '[object ' + name + ']';
@@ -1367,6 +1377,7 @@
 
   // Optimize `isFunction` if appropriate. Work around some typeof bugs in old v8,
   // IE 11 (#1621), Safari 8 (#1929), and PhantomJS (#2236).
+  // TODO
   var nodelist = root.document && root.document.childNodes;
   if (typeof /./ != 'function' && typeof Int8Array != 'object' && typeof nodelist != 'function') {
     _.isFunction = function(obj) {
@@ -1380,6 +1391,8 @@
   };
 
   // Is the given value `NaN`?
+  // reading: isNaN('1') === false
+  // 同时满足两个条件，因为字符串数字 isNaN 也是 false
   _.isNaN = function(obj) {
     return _.isNumber(obj) && isNaN(obj);
   };
@@ -1437,6 +1450,7 @@
   };
 
   // Keep the identity function around for default iteratees.
+  // reading:
   _.identity = function(value) {
     return value;
   };
