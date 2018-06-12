@@ -91,9 +91,34 @@
 			/**
 			 * 7. _.restArgs
 			 */
-			console.log(_.restArgs(function(){console.log('hello')})())
+			// console.log(_.restArgs(function(){console.log('hello')})())
 			// console.log(_.restArgs(function(){console.log(this.a)}, 1, 2))
-
+			
+			/**
+			 * 8. _.pluck(obj, key)
+			 */
+			const obj = {
+				i: {
+					a: 1,
+				},
+				j: {
+					a: 2,
+				},
+				k: {
+					b: 3,
+				},
+				m: {
+					a: {
+						b: {
+							c: 4,
+						},
+					},
+				}
+			}
+			console.log(_.pluck(obj, 'a'))
+			console.log(_.pluck(obj, 'b'))
+			console.log(_.pluck(obj, ['b']))
+			console.log(_.pluck(obj, ['a', 'b', 'c']))
 		}
 	</script>
 </body>

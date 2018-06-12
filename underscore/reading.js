@@ -345,23 +345,27 @@
   });
 
   // Convenience version of a common use case of `map`: fetching a property.
+  // reading: 使用见 demo
   _.pluck = function(obj, key) {
     return _.map(obj, _.property(key));
   };
 
   // Convenience version of a common use case of `filter`: selecting only objects
   // containing specific `key:value` pairs.
+  // reading: 
   _.where = function(obj, attrs) {
     return _.filter(obj, _.matcher(attrs));
   };
 
   // Convenience version of a common use case of `find`: getting the first object
   // containing specific `key:value` pairs.
+  // reading:
   _.findWhere = function(obj, attrs) {
     return _.find(obj, _.matcher(attrs));
   };
 
   // Return the maximum element (or element-based computation).
+  // reading: 最大值
   _.max = function(obj, iteratee, context) {
     var result = -Infinity, lastComputed = -Infinity,
         value, computed;
@@ -387,6 +391,7 @@
   };
 
   // Return the minimum element (or element-based computation).
+  // reading: 最小值
   _.min = function(obj, iteratee, context) {
     var result = Infinity, lastComputed = Infinity,
         value, computed;
@@ -412,6 +417,7 @@
   };
 
   // Shuffle a collection.
+  // reading: 洗牌打乱
   _.shuffle = function(obj) {
     return _.sample(obj, Infinity);
   };
@@ -420,6 +426,7 @@
   // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
   // If **n** is not specified, returns a single random element.
   // The internal `guard` argument allows it to work with `map`.
+  // reading:
   _.sample = function(obj, n, guard) {
     if (n == null || guard) {
       if (!isArrayLike(obj)) obj = _.values(obj);
@@ -439,6 +446,7 @@
   };
 
   // Sort the object's values by a criterion produced by an iteratee.
+  // reading:排序
   _.sortBy = function(obj, iteratee, context) {
     var index = 0;
     iteratee = cb(iteratee, context);
@@ -1463,7 +1471,7 @@
   };
 
   _.noop = function(){};
-  // reading: 两种赋值
+  // reading: 两种取值
   _.property = function(path) {
     if (!_.isArray(path)) {
       return shallowProperty(path);
@@ -1502,6 +1510,7 @@
   };
 
   // Return a random integer between min and max (inclusive).
+  // reading:获取[min, max]之间一个随机整数
   _.random = function(min, max) {
     if (max == null) {
       max = min;
