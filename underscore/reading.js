@@ -468,6 +468,7 @@
   };
 
   // An internal function used for aggregate "group by" operations.
+  // reading: 内部函数被 _.groupBy/_.indexBy/_.countBy等调用
   var group = function(behavior, partition) {
     return function(obj, iteratee, context) {
       var result = partition ? [[], []] : {};
@@ -482,12 +483,14 @@
 
   // Groups the object's values by a criterion. Pass either a string attribute
   // to group by, or a function that returns the criterion.
+  // reading:
   _.groupBy = group(function(result, value, key) {
     if (_.has(result, key)) result[key].push(value); else result[key] = [value];
   });
 
   // Indexes the object's values by a criterion, similar to `groupBy`, but for
   // when you know that your index values will be unique.
+  // reading:
   _.indexBy = group(function(result, value, key) {
     result[key] = value;
   });
@@ -495,12 +498,14 @@
   // Counts instances of an object that group by a certain criterion. Pass
   // either a string attribute to count by, or a function that returns the
   // criterion.
+  // reading:
   _.countBy = group(function(result, value, key) {
     if (_.has(result, key)) result[key]++; else result[key] = 1;
   });
-
+  // TODO
   var reStrSymbol = /[^\ud800-\udfff]|[\ud800-\udbff][\udc00-\udfff]|[\ud800-\udfff]/g;
   // Safely create a real, live array from anything iterable.
+  // reading: 转数组
   _.toArray = function(obj) {
     if (!obj) return [];
     if (_.isArray(obj)) return slice.call(obj);
@@ -513,6 +518,7 @@
   };
 
   // Return the number of elements in an object.
+  // reading: 长度
   _.size = function(obj) {
     if (obj == null) return 0;
     return isArrayLike(obj) ? obj.length : _.keys(obj).length;
@@ -520,6 +526,7 @@
 
   // Split a collection into two arrays: one whose elements all satisfy the given
   // predicate, and one whose elements all do not satisfy the predicate.
+  // reading: 分割两组
   _.partition = group(function(result, value, pass) {
     result[pass ? 0 : 1].push(value);
   }, true);
