@@ -577,6 +577,7 @@
 
   // Internal implementation of a recursive `flatten` function.
   // reading: 多维数组拍平
+  // TODO
   var flatten = function(input, shallow, strict, output) {
     output = output || [];
     var idx = output.length;
@@ -605,6 +606,7 @@
   };
 
   // Return a version of the array that does not contain the specified value(s).
+  // reading:
   _.without = restArgs(function(array, otherArrays) {
     return _.difference(array, otherArrays);
   });
@@ -664,6 +666,7 @@
 
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
+  // reading:
   _.difference = restArgs(function(array, rest) {
     rest = flatten(rest, true, true);
     return _.filter(array, function(value){
@@ -673,6 +676,7 @@
 
   // Complement of _.zip. Unzip accepts an array of arrays and groups
   // each array's elements on shared indices.
+  // reading:
   _.unzip = function(array) {
     var length = array && _.max(array, getLength).length || 0;
     var result = Array(length);
@@ -690,6 +694,7 @@
   // Converts lists into objects. Pass either a single array of `[key, value]`
   // pairs, or two parallel arrays of the same length -- one of keys, and one of
   // the corresponding values. Passing by pairs is the reverse of _.pairs.
+  // reading
   _.object = function(list, values) {
     var result = {};
     for (var i = 0, length = getLength(list); i < length; i++) {
@@ -771,6 +776,7 @@
   // Generate an integer Array containing an arithmetic progression. A port of
   // the native Python `range()` function. See
   // [the Python documentation](http://docs.python.org/library/functions.html#range).
+  // reading
   _.range = function(start, stop, step) {
     if (stop == null) {
       stop = start || 0;
@@ -792,6 +798,7 @@
 
   // Split an **array** into several arrays containing **count** or less elements
   // of initial array.
+  // reading
   _.chunk = function(array, count) {
     if (count == null || count < 1) return [];
 
