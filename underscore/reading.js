@@ -150,6 +150,7 @@
   };
 
   // An internal function for creating a new object that inherits from another.
+  // reading: 根据 prototype 创建对象
   var baseCreate = function(prototype) {
     if (!_.isObject(prototype)) return {};
     if (nativeCreate) return nativeCreate(prototype);
@@ -614,6 +615,8 @@
   // Produce a duplicate-free version of the array. If the array has already
   // been sorted, you have the option of using a faster algorithm.
   // Aliased as `unique`.
+  // reading:
+  // TODO
   _.uniq = _.unique = function(array, isSorted, iteratee, context) {
     if (!_.isBoolean(isSorted)) {
       context = iteratee;
@@ -649,6 +652,7 @@
 
   // Produce an array that contains every item shared between all the
   // passed-in arrays.
+  // reading: 交集，所有数组都存在的值
   _.intersection = function(array) {
     var result = [];
     var argsLength = arguments.length;
@@ -815,6 +819,8 @@
 
   // Determines whether to execute a function as a constructor
   // or a normal function with the provided arguments.
+  // reading
+  // TODO
   var executeBound = function(sourceFunc, boundFunc, context, callingContext, args) {
     if (!(callingContext instanceof boundFunc)) return sourceFunc.apply(context, args);
     var self = baseCreate(sourceFunc.prototype);
@@ -826,6 +832,8 @@
   // Create a function bound to a given object (assigning `this`, and arguments,
   // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
   // available.
+  // reading
+  // TODO
   _.bind = restArgs(function(func, context, args) {
     if (!_.isFunction(func)) throw new TypeError('Bind must be called on a function');
     var bound = restArgs(function(callArgs) {
@@ -838,6 +846,7 @@
   // arguments pre-filled, without changing its dynamic `this` context. _ acts
   // as a placeholder by default, allowing any combination of arguments to be
   // pre-filled. Set `_.partial.placeholder` for a custom placeholder argument.
+  // TODO
   _.partial = restArgs(function(func, boundArgs) {
     var placeholder = _.partial.placeholder;
     var bound = function() {
@@ -857,6 +866,7 @@
   // Bind a number of an object's methods to that object. Remaining arguments
   // are the method names to be bound. Useful for ensuring that all callbacks
   // defined on an object belong to it.
+  // TODO
   _.bindAll = restArgs(function(obj, keys) {
     keys = flatten(keys, false, false);
     var index = keys.length;
@@ -868,6 +878,7 @@
   });
 
   // Memoize an expensive function by storing its results.
+  // reading: good
   _.memoize = function(func, hasher) {
     var memoize = function(key) {
       var cache = memoize.cache;
