@@ -5,12 +5,37 @@
 	<title>1-测试 underscore</title>
 </head>
 <body>
-
+	<button onclick="clickMeT()">throttle</button>
+	<button onclick="clickMeD()">debounce</button>
+	<button onclick="clickMeA()">after</button>
 
 	<!-- <script src="./lib/underscore-min.js"></script> -->
 	<script src="../reading.js"></script>
 	<script>
-		window.onload = function(){
+
+		/**
+		 * _.throttle
+		 */
+		const clickMeT = _.throttle(function(){
+			console.log('hello world')
+		}, 10000, {})
+
+		/**
+		 * _.debounce
+		 */
+		const clickMeD = _.debounce(function(){
+			console.log('hello world')
+		}, 10000)
+
+
+		/**
+		 * _.after
+		 */
+		const clickMeA = _.after(5, function(){
+			console.log('hello')
+		})
+
+		window.onload = function() {
 
 			// Collection Functions (Arrays or Objects)
 			
@@ -123,9 +148,21 @@
 			/**
 			 * _.memoize
 			 */
-			var fibonacci = _.memoize(function(n) {
-			 	return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
-			});
+			// var fibonacci = _.memoize(function(n) {
+			//  	return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+			// });
+			
+			/**
+			 * _.compose
+			 */
+			// console.log(_.compose(function(a){
+			// 	console.log(a)
+			// }, function(){
+			// 	console.log('2')
+			// 	return 1
+			// })())
+
+
 		}
 	</script>
 </body>

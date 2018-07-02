@@ -892,6 +892,7 @@
 
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
+  // reading
   _.delay = restArgs(function(func, wait, args) {
     return setTimeout(function() {
       return func.apply(null, args);
@@ -900,6 +901,7 @@
 
   // Defers a function, scheduling it to run after the current call stack has
   // cleared.
+  // TODO
   _.defer = _.partial(_.delay, _, 1);
 
   // Returns a function, that, when invoked, will only be triggered at most once
@@ -907,6 +909,7 @@
   // as much as it can, without ever going more than once per `wait` duration;
   // but if you'd like to disable the execution on the leading edge, pass
   // `{leading: false}`. To disable execution on the trailing edge, ditto.
+  // reading: 节流
   _.throttle = function(func, wait, options) {
     var timeout, context, args, result;
     var previous = 0;
@@ -952,6 +955,7 @@
   // be triggered. The function will be called after it stops being called for
   // N milliseconds. If `immediate` is passed, trigger the function on the
   // leading edge, instead of the trailing.
+  // reading: 防抖
   _.debounce = function(func, wait, immediate) {
     var timeout, result;
 
@@ -984,6 +988,7 @@
   // Returns the first function passed as an argument to the second,
   // allowing you to adjust arguments, run code before and after, and
   // conditionally execute the original function.
+  // TODO
   _.wrap = function(func, wrapper) {
     return _.partial(wrapper, func);
   };
@@ -998,6 +1003,7 @@
 
   // Returns a function that is the composition of a list of functions, each
   // consuming the return value of the function that follows.
+  // reading
   _.compose = function() {
     var args = arguments;
     var start = args.length - 1;
@@ -1010,6 +1016,7 @@
   };
 
   // Returns a function that will only be executed on and after the Nth call.
+  // reading: times 后才会调用
   _.after = function(times, func) {
     return function() {
       if (--times < 1) {
@@ -1019,6 +1026,7 @@
   };
 
   // Returns a function that will only be executed up to (but not including) the Nth call.
+  // reading: 至多会调用 times 次
   _.before = function(times, func) {
     var memo;
     return function() {
@@ -1032,6 +1040,7 @@
 
   // Returns a function that will be executed at most one time, no matter how
   // often you call it. Useful for lazy initialization.
+  // TODO
   _.once = _.partial(_.before, 2);
 
   _.restArgs = restArgs;
@@ -1553,6 +1562,7 @@
   };
 
   // A (possibly faster) way to get the current timestamp as an integer.
+  // reading: 获取当前时间戳
   _.now = Date.now || function() {
     return new Date().getTime();
   };
