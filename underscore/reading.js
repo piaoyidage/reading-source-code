@@ -1084,6 +1084,7 @@
   };
 
   // Retrieve all the property names of an object.
+  // reading: 注意区分与 _.keys 的区别，少了 Object.prototype.hasOwnProperty
   _.allKeys = function(obj) {
     if (!_.isObject(obj)) return [];
     var keys = [];
@@ -1107,6 +1108,7 @@
 
   // Returns the results of applying the iteratee to each element of the object.
   // In contrast to _.map it returns an object.
+  // reading: 注意与._map 的区分
   _.mapObject = function(obj, iteratee, context) {
     iteratee = cb(iteratee, context);
     var keys = _.keys(obj),
@@ -1121,6 +1123,7 @@
 
   // Convert an object into a list of `[key, value]` pairs.
   // The opposite of _.object.
+  // reading: 二维数组 
   _.pairs = function(obj) {
     var keys = _.keys(obj);
     var length = keys.length;
@@ -1132,6 +1135,8 @@
   };
 
   // Invert the keys and values of an object. The values must be serializable.
+  // reading: 对象改变 key: value => value: key
+  // 需要注意 value 中的值必须是可序列化的，一些对象或者函数就不可以
   _.invert = function(obj) {
     var result = {};
     var keys = _.keys(obj);
@@ -1143,6 +1148,7 @@
 
   // Return a sorted list of the function names available on the object.
   // Aliased as `methods`.
+  // reading
   _.functions = _.methods = function(obj) {
     var names = [];
     for (var key in obj) {
@@ -1172,6 +1178,7 @@
   };
 
   // Extend a given object with all the properties in passed-in object(s).
+  // reading
   _.extend = createAssigner(_.allKeys);
 
   // Assigns a given object with all the own properties in the passed-in object(s).
@@ -1191,11 +1198,13 @@
   };
 
   // Internal pick helper function to determine if `obj` has key `key`.
+  // reading
   var keyInObj = function(value, key, obj) {
     return key in obj;
   };
 
   // Return a copy of the object only containing the whitelisted properties.
+  // TODO
   _.pick = restArgs(function(obj, keys) {
     var result = {}, iteratee = keys[0];
     if (obj == null) return result;
@@ -1216,6 +1225,7 @@
   });
 
   // Return a copy of the object without the blacklisted properties.
+  // TODO
   _.omit = restArgs(function(obj, keys) {
     var iteratee = keys[0], context;
     if (_.isFunction(iteratee)) {
@@ -1236,6 +1246,7 @@
   // Creates an object that inherits from the given prototype object.
   // If additional properties are provided then they will be added to the
   // created object.
+  // reading
   _.create = function(prototype, props) {
     var result = baseCreate(prototype);
     if (props) _.extendOwn(result, props);
@@ -1243,6 +1254,7 @@
   };
 
   // Create a (shallow-cloned) duplicate of an object.
+  // reading
   _.clone = function(obj) {
     if (!_.isObject(obj)) return obj;
     return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
@@ -1251,6 +1263,7 @@
   // Invokes interceptor with the obj, and then returns obj.
   // The primary purpose of this method is to "tap into" a method chain, in
   // order to perform operations on intermediate results within the chain.
+  // reading
   _.tap = function(obj, interceptor) {
     interceptor(obj);
     return obj;

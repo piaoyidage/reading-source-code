@@ -5,9 +5,9 @@
 	<title>1-测试 underscore</title>
 </head>
 <body>
-	<button onclick="clickMeT()">throttle</button>
+<!-- 	<button onclick="clickMeT()">throttle</button>
 	<button onclick="clickMeD()">debounce</button>
-	<button onclick="clickMeA()">after</button>
+	<button onclick="clickMeA()">after</button> -->
 
 	<!-- <script src="./lib/underscore-min.js"></script> -->
 	<script src="../reading.js"></script>
@@ -16,24 +16,24 @@
 		/**
 		 * _.throttle
 		 */
-		const clickMeT = _.throttle(function(){
-			console.log('hello world')
-		}, 10000, {})
+		// const clickMeT = _.throttle(function(){
+		// 	console.log('hello world')
+		// }, 10000, {})
 
 		/**
 		 * _.debounce
 		 */
-		const clickMeD = _.debounce(function(){
-			console.log('hello world')
-		}, 10000)
+		// const clickMeD = _.debounce(function(){
+		// 	console.log('hello world')
+		// }, 10000)
 
 
 		/**
 		 * _.after
 		 */
-		const clickMeA = _.after(5, function(){
-			console.log('hello')
-		})
+		// const clickMeA = _.after(5, function(){
+		// 	console.log('hello')
+		// })
 
 		window.onload = function() {
 
@@ -161,6 +161,12 @@
 			// 	console.log('2')
 			// 	return 1
 			// })())
+			
+			/**
+			 * _.pick
+			 */
+			const a = { a: 1, b: 2, c: 3}
+			console.log(_.pick(a, ['a', 'b']))
 
 
 		}
