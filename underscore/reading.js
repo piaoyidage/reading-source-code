@@ -1284,6 +1284,7 @@
 
 
   // Internal recursive comparison function for `isEqual`.
+  // reading
   var eq, deepEq;
   eq = function(a, b, aStack, bStack) {
     // Identical objects are equal. `0 === -0`, but they aren't identical.
@@ -1300,6 +1301,7 @@
   };
 
   // Internal recursive comparison function for `isEqual`.
+  // TODO
   deepEq = function(a, b, aStack, bStack) {
     // Unwrap any wrapped objects.
     if (a instanceof _) a = a._wrapped;
@@ -1396,6 +1398,7 @@
 
   // Is a given array, string, or object empty?
   // An "empty" object has no enumerable own-properties.
+  // reading
   _.isEmpty = function(obj) {
     if (obj == null) return true;
     if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj))) return obj.length === 0;
@@ -1403,6 +1406,7 @@
   };
 
   // Is a given value a DOM element?
+  // reading
   _.isElement = function(obj) {
     return !!(obj && obj.nodeType === 1);
   };
@@ -1461,16 +1465,19 @@
   };
 
   // Is a given value a boolean?
+  // reading
   _.isBoolean = function(obj) {
     return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
   };
 
   // Is a given value equal to null?
+  // reading
   _.isNull = function(obj) {
     return obj === null;
   };
 
   // Is a given variable undefined?
+  // reading
   _.isUndefined = function(obj) {
     return obj === void 0;
   };

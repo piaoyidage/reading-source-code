@@ -165,9 +165,29 @@
 			/**
 			 * _.pick
 			 */
-			const a = { a: 1, b: 2, c: 3}
-			console.log(_.pick(a, ['a', 'b']))
+			// const a = { a: 1, b: 2, c: 3}
+			// console.log(_.pick(a, ['a', 'b']))
 
+			/**
+			 * _
+			 */
+			var _ = function(obj) {
+				if (obj instanceof _) {
+					return obj
+				}
+				if (!(this instanceof _)) {
+					return new _(obj)
+				}
+				this._wrapped = obj
+			}
+
+			const obj1 = {a: 1}
+			const obj2 = new _(2)
+			const obj3 = new _(obj1)
+			const obj4 = new _(obj2)
+			console.log(obj1, obj2, obj3, obj4)
+			console.log(obj2 === obj4)
+			console.log(_(2))
 
 		}
 	</script>
