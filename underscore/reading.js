@@ -1544,6 +1544,7 @@
   };
 
   // Generates a function for a given object that returns a given property.
+  // reading
   _.propertyOf = function(obj) {
     if (obj == null) {
       return function(){};
@@ -1564,6 +1565,7 @@
   };
 
   // Run a function **n** times.
+  // reading
   _.times = function(n, iteratee, context) {
     var accum = Array(Math.max(0, n));
     iteratee = optimizeCb(iteratee, context, 1);
@@ -1588,6 +1590,7 @@
   };
 
   // List of HTML entities for escaping.
+  // reading: 转义实体
   var escapeMap = {
     '&': '&amp;',
     '<': '&lt;',
@@ -1599,6 +1602,7 @@
   var unescapeMap = _.invert(escapeMap);
 
   // Functions for escaping and unescaping strings to/from HTML interpolation.
+  // reading
   var createEscaper = function(map) {
     var escaper = function(match) {
       return map[match];
@@ -1618,6 +1622,7 @@
   // Traverses the children of `obj` along `path`. If a child is a function, it
   // is invoked with its parent as context. Returns the value of the final
   // child, or `fallback` if any child is undefined.
+  // reading
   _.result = function(obj, path, fallback) {
     if (!_.isArray(path)) path = [path];
     var length = path.length;
@@ -1637,6 +1642,7 @@
 
   // Generate a unique integer id (unique within the entire client session).
   // Useful for temporary DOM ids.
+  // reading
   var idCounter = 0;
   _.uniqueId = function(prefix) {
     var id = ++idCounter + '';
@@ -1677,6 +1683,7 @@
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
   // and correctly escapes quotes within interpolated code.
   // NB: `oldSettings` only exists for backwards compatibility.
+  // TODO
   _.template = function(text, settings, oldSettings) {
     if (!settings && oldSettings) settings = oldSettings;
     settings = _.defaults({}, settings, _.templateSettings);
@@ -1748,6 +1755,7 @@
   // underscore functions. Wrapped objects may be chained.
 
   // Helper function to continue chaining intermediate results.
+  // TODO
   var chainResult = function(instance, obj) {
     return instance._chain ? _(obj).chain() : obj;
   };
