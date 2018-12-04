@@ -40,3 +40,7 @@ for (var i in obj) {
    console.log(i); // logs "c" and "d"
 }
 ```
+
+## 参考
+1. [MDN Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
+2. [MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
