@@ -2,8 +2,8 @@
 
 ## 已阅读
 
-* underscore
+* [underscore](https://github.com/jashkenas/underscore)
 
 ## 阅读中
 
-* events
+* [events](https://github.com/Gozala/events)
