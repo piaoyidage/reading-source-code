@@ -21,10 +21,12 @@
 
 'use strict';
 
+// reading: Reflect 是个啥？
 var R = typeof Reflect === 'object' ? Reflect : null
 var ReflectApply = R && typeof R.apply === 'function'
   ? R.apply
   : function ReflectApply(target, receiver, args) {
+    // reading: 这不就是 receiver.call(target, args)
     return Function.prototype.apply.call(target, receiver, args);
   }
 
@@ -46,6 +48,7 @@ function ProcessEmitWarning(warning) {
   if (console && console.warn) console.warn(warning);
 }
 
+// reading: 判断是否是 NaN
 var NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {
   return value !== value;
 }
@@ -146,6 +149,7 @@ EventEmitter.prototype.emit = function emit(type) {
     ReflectApply(handler, this, args);
   } else {
     var len = handler.length;
+    // reading: 拷贝了函数数组，然后使用，避免副作用?
     var listeners = arrayClone(handler, len);
     for (var i = 0; i < len; ++i)
       ReflectApply(listeners[i], this, args);
@@ -154,6 +158,7 @@ EventEmitter.prototype.emit = function emit(type) {
   return true;
 };
 
+// reading: prepend 前置
 function _addListener(target, type, listener, prepend) {
   var m;
   var events;
@@ -170,6 +175,7 @@ function _addListener(target, type, listener, prepend) {
   } else {
     // To avoid recursion in the case that type === "newListener"! Before
     // adding it to the listeners, first emit "newListener".
+    // TODO: 不懂
     if (events.newListener !== undefined) {
       target.emit('newListener', type,
                   listener.listener ? listener.listener : listener);
@@ -218,6 +224,7 @@ function _addListener(target, type, listener, prepend) {
   return target;
 }
 
+// reading: 编码风格，调用 _fn
 EventEmitter.prototype.addListener = function addListener(type, listener) {
   return _addListener(this, type, listener, false);
 };
@@ -247,6 +254,7 @@ function _onceWrap(target, type, listener) {
   return wrapped;
 }
 
+// reading: 仅仅执行一次
 EventEmitter.prototype.once = function once(type, listener) {
   if (typeof listener !== 'function') {
     throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
